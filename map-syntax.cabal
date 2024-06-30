@@ -1,5 +1,7 @@
+cabal-version:  >= 1.10
 name:           map-syntax
 version:        0.3
+x-revision:     9
 synopsis:       Syntax sugar for defining maps
 description:
     Haskell's canonical list of tuples syntax for defining maps is not very
@@ -11,18 +13,22 @@ license-file:   LICENSE
 author:         Doug Beardsley
 maintainer:     mightybyte@gmail.com
 build-type:     Simple
-cabal-version:  >= 1.10
 category:       Data Structures
 
 Tested-With:
-  GHC == 7.4.2,
-  GHC == 7.6.3,
-  GHC == 7.8.4,
-  GHC == 7.10.2,
-  GHC == 8.0.2,
-  GHC == 8.2.2,
-  GHC == 8.4.4,
-  GHC == 8.6.3
+  GHC == 9.10.1
+  GHC == 9.8.2
+  GHC == 9.6.5
+  GHC == 9.4.8
+  GHC == 9.2.8
+  GHC == 9.0.2
+  GHC == 8.10.7
+  GHC == 8.8.4
+  GHC == 8.6.5
+  GHC == 8.4.4
+  GHC == 8.2.2
+  GHC == 8.0.2
+
 
 extra-source-files:
   .ghci,
@@ -38,9 +44,9 @@ Library
     Data.Map.Syntax
 
   build-depends:
-    base                       >= 4.3 && < 4.15,
-    containers                 >= 0.3 && < 0.7,
-    mtl                        >= 2.0 && < 2.3
+    base                       >= 4.3 && < 5,
+    containers                 >= 0.3 && < 0.8,
+    mtl                        >= 2.0 && < 2.4
 
   ghc-options: -Wall -fwarn-tabs -funbox-strict-fields -fno-warn-unused-do-bind
 
@@ -72,11 +78,13 @@ Test-suite testsuite
     build-depends: semigroups == 0.18.*
 
   build-depends:
-    base,
-    containers,
+    -- dependencies for library (need bounds since library is not a dependency here):
+    base                       >= 4.3      && < 5,
+    containers                 >= 0.3      && < 0.8,
+    mtl                        >= 2.0      && < 2.4,
+    -- dependencies only for testsuite:
     deepseq                    >= 1.3      && < 2,
     HUnit                      >= 1.2      && < 2,
-    mtl,
     QuickCheck                 >= 2.3.0.2  && < 3,
-    hspec                      >= 2.2.3    && < 2.8,
-    transformers               >= 0.3      && < 0.6
+    hspec                      >= 2.2.3    && < 2.12,
+    transformers               >= 0.3      && < 0.7
